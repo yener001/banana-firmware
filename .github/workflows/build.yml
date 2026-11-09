@@ -1,25 +1,8 @@
-name: Build
-on: [push, workflow_dispatch]
-permissions:
-  contents: write
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-      - run: pip install platformio
-      - run: pio run
-      - run: |
-          mkdir -p firmware
-          cp .pio/build/banana/bootloader.bin firmware/
-          cp .pio/build/banana/partitions.bin firmware/
-          cp .pio/build/banana/firmware.bin firmware/
-          cp ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin firmware/
-      - run: |
-          git config user.name github-actions
-          git config user.email actions@github.com
-          git add firmware
-          git commit -m "build" || exit 0
-          git push
+[env:banana]
+platform = espressif32
+board = m5stick-c
+framework = arduino
+lib_deps =
+  m5stack/M5Unified
+  IRremoteESP8266
+  h2zero/NimBLE-Arduino@^2.1.0
