@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banana Firmware</title>
+  <script type="module"
+    src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    body{background:#111;color:#fff;font-family:sans-serif;text-align:center;padding:20px}
+    video,img{max-width:90%;width:420px;border-radius:12px}
+    button{background:#ffd400;border:0;padding:14px 40px;font-size:20px;
+           font-weight:bold;border-radius:10px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <h1>🍌 Banana Firmware</h1>
+  <video src="banana.mp4" autoplay loop muted playsinline></video>
+  <p>M5StickC Plus2'yi USB ile bağla, sonra Install'a bas.</p>
+
+  <esp-web-install-button manifest="manifest.json">
+    <button slot="activate">INSTALL</button>
+  </esp-web-install-button>
+</body>
+</html>
