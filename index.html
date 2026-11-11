@@ -3,23 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Banana Firmware</title>
+  <title>M5 Stick Plus 2 Banana Firmware</title>
   <script type="module"
     src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
   <style>
-    body{background:#111;color:#fff;font-family:sans-serif;text-align:center;padding:20px}
-    video,img{max-width:90%;width:420px;border-radius:12px}
-    button{background:#ffd400;border:0;padding:14px 40px;font-size:20px;
-           font-weight:bold;border-radius:10px;cursor:pointer}
+    body{background:#111;color:#fff;font-family:sans-serif;text-align:center;
+         display:flex;flex-direction:column;align-items:center;
+         justify-content:center;min-height:100vh;margin:0;padding:20px}
+    h1{font-size:2rem;margin:0 0 30px}
+    button{background:#ffd400;border:0;padding:16px 56px;font-size:22px;
+           font-weight:bold;border-radius:12px;cursor:pointer}
+    #warn{display:none;color:#ff6b6b;margin-top:24px;max-width:340px}
   </style>
 </head>
 <body>
-  <h1>🍌 Banana Firmware</h1>
-  <video src="banana.mp4" autoplay loop muted playsinline></video>
-  <p>M5StickC Plus2'yi USB ile bağla, sonra Install'a bas.</p>
+  <h1>🍌 M5 Stick Plus 2<br>Banana Firmware</h1>
 
   <esp-web-install-button manifest="manifest.json">
     <button slot="activate">INSTALL</button>
+    <span slot="unsupported">Bu tarayıcı desteklenmiyor. Chrome veya Edge kullan.</span>
+    <span slot="not-allowed">Bu sayfa HTTPS ile açılmalı.</span>
   </esp-web-install-button>
+
+  <p id="warn">Tarayıcın USB yüklemeyi desteklemiyor. Chrome veya Edge ile aç.</p>
+  <script>
+    if (!("serial" in navigator)) document.getElementById("warn").style.display = "block";
+  </script>
 </body>
 </html>
